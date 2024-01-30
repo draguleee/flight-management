@@ -1,0 +1,79 @@
+﻿@model flight_management.Models.COMPANII_AERIENE
+
+@{
+    ViewBag.Title = "Adăugare - Companii Aeriene";
+}
+
+<div class="text-center">
+    <h2 class="pt-4 pb-4"> Adăugare Companie Aeriană</h2>
+    <hr />
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal centered-form-column">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <!-- Eticheta & Camp pentru adaugarea ID-ului companiei -->
+    <div class="form-group pt-2 text-center centered-form-column">
+        @Html.LabelFor(model => model.ID_COMPANII, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10 text-center centered-form-column">
+            @Html.EditorFor(model => model.ID_COMPANII, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ID_COMPANII, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- Eticheta & Camp pentru adaugarea numelui companiei -->
+    <div class="form-group pt-2 text-center centered-form-column">
+        @Html.LabelFor(model => model.NUME_COMPANIE, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10 text-center centered-form-column">
+            @Html.EditorFor(model => model.NUME_COMPANIE, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NUME_COMPANIE, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- Eticheta & Camp pentru adaugarea codului companiei -->
+    <div class="form-group pt-2 text-center centered-form-column">
+        @Html.LabelFor(model => model.COD_COMPANIE, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10 text-center centered-form-column">
+            @Html.EditorFor(model => model.COD_COMPANIE, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.COD_COMPANIE, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- Eticheta & Camp pentru adaugarea tarii fondatoare a companiei -->
+    <div class="form-group pt-2 text-center centered-form-column">
+        @Html.LabelFor(model => model.TARA, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10 text-center centered-form-column">
+            @Html.EditorFor(model => model.TARA, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TARA, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- Eticheta & Camp pentru adaugarea anului infiintarii a companiei-->
+    <div class="form-group pt-2 text-center centered-form-column">
+        @Html.LabelFor(model => model.AN_INFIINTARE, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10 text-center centered-form-column">
+            @Html.EditorFor(model => model.AN_INFIINTARE, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.AN_INFIINTARE, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- Butoanele de adaugare si revenire la pagina CompaniiAeriene/Index-->
+    <div class="form-group pt-4">
+        <div class="text-center">
+            <input type="submit" value="Adaugă" class="btn btn-success d-inline-block" />
+            @Html.ActionLink("Înapoi", "Index", null, new { @class = "btn btn-primary d-inline-block" })
+        </div>
+    </div>
+</div>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+</div>
+

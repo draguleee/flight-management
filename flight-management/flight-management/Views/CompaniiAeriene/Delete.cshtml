@@ -1,0 +1,51 @@
+﻿@model flight_management.Models.COMPANII_AERIENE
+
+@{
+    ViewBag.Title = "Ștergere - Companii Aeriene";
+}
+
+<div class="text-center">
+    <h2 class="pt-4 pb-4"> Confirmare ștergere pentru Compania Aeriană: @Model.NUME_COMPANIE </h2>
+    <hr />
+    
+    <div>
+
+        <dl class="dl-horizontal centered-form-column">
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.NUME_COMPANIE) </dt>
+                <dd> @Html.DisplayFor(model => model.NUME_COMPANIE) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.COD_COMPANIE) </dt>
+                <dd> @Html.DisplayFor(model => model.COD_COMPANIE) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.TARA) </dt>
+                <dd> @Html.DisplayFor(model => model.TARA) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.AN_INFIINTARE) </dt>
+                <dd> @Html.DisplayFor(model => model.AN_INFIINTARE) </dd>
+            </div>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group pt-4 pb-4">
+                <div class="text-center">
+                    <input type="submit" value="Șterge" class="btn btn-danger" /> 
+                    @Html.ActionLink("Înapoi", "Index", null, new { @class = "btn btn-primary d-inline-block" })
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

@@ -1,0 +1,84 @@
+﻿@model flight_management.Models.BILETE
+
+@{
+    ViewBag.Title = "Modifică - Bilete";
+}
+
+<div class="text-center">
+    <h2 class="pt-4 pb-4">Modificare Bilet: ID @Model.ID_BILETE </h2>
+    <hr />
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal centered-form-column">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ID_BILETE)
+
+            <div class="form-group pt-2 text-center centered-form-column">
+                @Html.LabelFor(model => model.ID_PASAGERI, "ID_PASAGERI", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 text-center centered-form-column">
+                    @Html.DropDownList("ID_PASAGERI", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ID_PASAGERI, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group pt-2 text-center centered-form-column">
+                @Html.LabelFor(model => model.ID_ZBORURI, "ID_ZBORURI", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 text-center centered-form-column">
+                    @Html.DropDownList("ID_ZBORURI", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ID_ZBORURI, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group pt-2 text-center centered-form-column">
+                @Html.LabelFor(model => model.DATA_REZERVARE, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 text-center centered-form-column">
+                    @Html.EditorFor(model => model.DATA_REZERVARE, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DATA_REZERVARE, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group pt-2 text-center centered-form-column">
+                @Html.LabelFor(model => model.CLASA, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 text-center centered-form-column">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.CLASA)
+                        @Html.ValidationMessageFor(model => model.CLASA, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group pt-2 text-center centered-form-column">
+                @Html.LabelFor(model => model.LOC, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 text-center centered-form-column">
+                    @Html.EditorFor(model => model.LOC, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LOC, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group pt-2 text-center centered-form-column">
+                @Html.LabelFor(model => model.PRET, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 text-center centered-form-column">
+                    @Html.EditorFor(model => model.PRET, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PRET, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group pt-4">
+                <div class="text-center">
+                    <input type="submit" value="Salvează Modificările" class="btn btn-success d-inline-block" />
+                    @Html.ActionLink("Înapoi", "Index", null, new { @class = "btn btn-primary d-inline-block" })
+                </div>
+            </div>
+        </div>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</div>
+
+

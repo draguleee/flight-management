@@ -1,0 +1,52 @@
+﻿@model IEnumerable<flight_management.Models.AEROPORTURI>
+
+@{
+    ViewBag.Title = "Index - Aeroporturi";
+}
+
+<div class="text-center">
+    <h2 class="pt-4 pb-4"> @ViewBag.Title </h2>
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            Căutare după țară: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" class="btn btn-success" />
+        </p>
+    }
+
+    <table class="pt-4 table table-secondary">
+        <tr class="table-success">
+            <th> @Html.ActionLink("NUME_AEROPORT", "Index", new { sortOrder = ViewBag.NumeParm }) </th>
+            <th> @Html.DisplayNameFor(model => model.COD_AEROPORT) </th>
+            <th> @Html.DisplayNameFor(model => model.ORAS) </th>
+            <th> @Html.DisplayNameFor(model => model.TARA) </th>
+            <th> @Html.DisplayNameFor(model => model.NR_PISTE) </th>
+            <th> @Html.DisplayNameFor(model => model.NR_PORTI) </th>
+            <th> OPERAȚIUNI </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @Html.DisplayFor(modelItem => item.NUME_AEROPORT) </td>
+                <td> @Html.DisplayFor(modelItem => item.COD_AEROPORT) </td>
+                <td> @Html.DisplayFor(modelItem => item.ORAS) </td>
+                <td> @Html.DisplayFor(modelItem => item.TARA) </td>
+                <td> @Html.DisplayFor(modelItem => item.NR_PISTE) </td>
+                <td> @Html.DisplayFor(modelItem => item.NR_PORTI) </td>
+                <td>
+                    @Html.ActionLink("Modifică", "Edit", new { id = item.ID_AEROPORTURI }, new { @class = "btn btn-sm btn-primary" }) |
+                    @Html.ActionLink("Detalii", "Details", new { id = item.ID_AEROPORTURI }, new { @class = "btn btn-sm btn-info" }) |
+                    @Html.ActionLink("Șterge", "Delete", new { id = item.ID_AEROPORTURI }, new { @class = "btn btn-sm btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <p class="pt-3">
+        @Html.ActionLink("Adaugă Aeroport", "Create", null, new { @class = "btn btn-success" })
+    </p>
+</div>
+
+

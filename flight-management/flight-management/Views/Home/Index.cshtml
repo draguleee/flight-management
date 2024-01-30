@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Flight Mgmt.";
+}
+
+<main>
+    <section class="row" aria-labelledby="aspnetTitle">
+        <h1 id="title" class="text-center pt-4 pb-4">Flight Mgmt.</h1>
+        <!-- Descriere aplicație -->
+        <p class="lead">
+            "Flight Mgmt.? De la ce vine Mgmt.?" <br />
+            Mgmt. vine de la Management. Exact, această aplicație este destinată personalului care se ocupă cu gestionarea datelor despre zboruri.
+            Datele despre zboruri includ, dar nu se limitează la: companiile aeriene și aeroporturile care efectuează zborurile, zborurile din zile
+            și ore specifice, pasagerii unui zbor și biletele pasagerilor. <br />
+            Aplicația dispune de următoarele funcționalități: adăugarea, vizualizarea, modificarea, ștergerea, filtrarea și sortarea informațiilor
+            esențiale despre companiile aeriene, aeroporturile, zborurile, pasagerii și biletele, informații care sunt stocate într-o bază de date.
+        </p>
+        <p class="text-center pt-3"><a href="https://localhost:44383/Zboruri" class="btn btn-outline-info btn-md">Către Zboruri &raquo;</a></p>
+    </section>
+    <hr />
+    <div class="row pt-4 pb-4">
+        <section class="col-md-3" aria-labelledby="gettingStartedTitle">
+            <h2 id="gettingStartedTitle">Companii Aeriene</h2>
+            <!-- Descriere acțiuni pentru pagina Companii Aeriene -->
+            <p>
+                Poți adăuga, vizualiza, modifica și șterge companii aeriene.
+                De asemenea, poți sorta companiile aeriene după anul înființării
+                sau le poți filtra după țara în care au fost înființate.
+            </p>
+            <p><a class="btn btn-outline-info" href="https://localhost:44383/CompaniiAeriene">Către Companii Aeriene &raquo;</a></p>
+        </section>
+        <section class="col-md-3" aria-labelledby="librariesTitle">
+            <h2 id="librariesTitle">Aeroporturi</h2>
+            <!-- Descriere acțiuni pentru pagina Aeroporturi -->
+            <p>
+                Poți adăuga, vizualiza, modifica și șterge aeroporturi.
+                De asemenea, poți sorta aeroporturile după numărul de piste sau porți,
+                sau le poți filtra după țara în care sunt localizate.
+                tipul avionului.
+            </p>
+            <p><a class="btn btn-outline-info" href="https://localhost:44383/Aeroporturi">Către Aeroporturi &raquo;</a></p>
+        </section>
+        <section class="col-md-3" aria-labelledby="hostingTitle">
+            <h2 id="hostingTitle">Pasageri</h2>
+            <!-- Descriere acțiuni pentru pagina Pasageri -->
+            <p>
+                Poți adăuga, vizualiza, modifica și șterge pasageri.
+                De asemenea, poți sorta pasagerii după data nașterii, sau îi poți filtra
+                după naționalitate sau gen.
+            </p>
+            <p><a class="btn btn-outline-info" href="https://localhost:44383/Pasageri">Către Pasageri &raquo;</a></p>
+        </section>
+        <section class="col-md-3" aria-labelledby="hostingTitle">
+            <h2 id="hostingTitle">Bilete</h2>
+            <!-- Descriere acțiuni pentru pagina Bilete -->
+            <p>
+                Poți adăuga, vizualiza, modifica și șterge bilete.
+                De asemenea, poți sorta pasagerii după data rezervării sau preț, sau le poți filtra
+                după clasă (1 sau 2).
+            </p>
+            <p><a class="btn btn-outline-info" href="https://localhost:44383/Bilete">Către Bilete &raquo;</a></p>
+        </section>
+    </div>
+</main>
+

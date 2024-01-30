@@ -1,0 +1,380 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="IntVirtualModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AEROPORTURI">
+          <Key>
+            <PropertyRef Name="ID_AEROPORTURI" />
+          </Key>
+          <Property Name="ID_AEROPORTURI" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NUME_AEROPORT" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="COD_AEROPORT" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="ORAS" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="TARA" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="NR_PISTE" Type="number" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="NR_PORTI" Type="number" Precision="2" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BILETE">
+          <Key>
+            <PropertyRef Name="ID_BILETE" />
+          </Key>
+          <Property Name="ID_BILETE" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_PASAGERI" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_ZBORURI" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DATA_REZERVARE" Type="date" Nullable="false" />
+          <Property Name="CLASA" Type="number" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="LOC" Type="number" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="PRET" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COMPANII_AERIENE">
+          <Key>
+            <PropertyRef Name="ID_COMPANII" />
+          </Key>
+          <Property Name="ID_COMPANII" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NUME_COMPANIE" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="COD_COMPANIE" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="TARA" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="AN_INFIINTARE" Type="number" Precision="4" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PASAGERI">
+          <Key>
+            <PropertyRef Name="ID_PASAGERI" />
+          </Key>
+          <Property Name="ID_PASAGERI" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NUME_PASAGER" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="PRENUME_PASAGER" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="DATA_NASTERII" Type="date" Nullable="false" />
+          <Property Name="NATIONALITATE" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="NR_PASAPORT" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="GEN" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="NR_TEL" Type="varchar2" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZBORURI">
+          <Key>
+            <PropertyRef Name="ID_ZBORURI" />
+          </Key>
+          <Property Name="ID_ZBORURI" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_COMPANII" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AEROPORT_PLECARE" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="AEROPORT_SOSIRE" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="ORA_PLECARE" Type="timestamp" Precision="6" Nullable="false" />
+          <Property Name="ORA_SOSIRE" Type="timestamp" Precision="6" Nullable="false" />
+          <Property Name="DURATA_ZBOR" Type="number" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="TIP_AVION" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="ID_AEROPORTURI" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="BILETE_FK0">
+          <End Role="PASAGERI" Type="Self.PASAGERI" Multiplicity="1" />
+          <End Role="BILETE" Type="Self.BILETE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PASAGERI">
+              <PropertyRef Name="ID_PASAGERI" />
+            </Principal>
+            <Dependent Role="BILETE">
+              <PropertyRef Name="ID_PASAGERI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BILETE_FK1">
+          <End Role="ZBORURI" Type="Self.ZBORURI" Multiplicity="1" />
+          <End Role="BILETE" Type="Self.BILETE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZBORURI">
+              <PropertyRef Name="ID_ZBORURI" />
+            </Principal>
+            <Dependent Role="BILETE">
+              <PropertyRef Name="ID_ZBORURI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ZBORURI_FK0">
+          <End Role="AEROPORTURI" Type="Self.AEROPORTURI" Multiplicity="1" />
+          <End Role="ZBORURI" Type="Self.ZBORURI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AEROPORTURI">
+              <PropertyRef Name="ID_AEROPORTURI" />
+            </Principal>
+            <Dependent Role="ZBORURI">
+              <PropertyRef Name="ID_AEROPORTURI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ZBORURI_FK1">
+          <End Role="COMPANII_AERIENE" Type="Self.COMPANII_AERIENE" Multiplicity="1" />
+          <End Role="ZBORURI" Type="Self.ZBORURI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPANII_AERIENE">
+              <PropertyRef Name="ID_COMPANII" />
+            </Principal>
+            <Dependent Role="ZBORURI">
+              <PropertyRef Name="ID_COMPANII" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IntVirtualModelStoreContainer">
+          <EntitySet Name="AEROPORTURI" EntityType="Self.AEROPORTURI" Schema="INTVIRTUAL" store:Type="Tables" />
+          <EntitySet Name="BILETE" EntityType="Self.BILETE" Schema="INTVIRTUAL" store:Type="Tables" />
+          <EntitySet Name="COMPANII_AERIENE" EntityType="Self.COMPANII_AERIENE" Schema="INTVIRTUAL" store:Type="Tables" />
+          <EntitySet Name="PASAGERI" EntityType="Self.PASAGERI" Schema="INTVIRTUAL" store:Type="Tables" />
+          <EntitySet Name="ZBORURI" EntityType="Self.ZBORURI" Schema="INTVIRTUAL" store:Type="Tables" />
+          <AssociationSet Name="BILETE_FK0" Association="Self.BILETE_FK0">
+            <End Role="PASAGERI" EntitySet="PASAGERI" />
+            <End Role="BILETE" EntitySet="BILETE" />
+          </AssociationSet>
+          <AssociationSet Name="BILETE_FK1" Association="Self.BILETE_FK1">
+            <End Role="ZBORURI" EntitySet="ZBORURI" />
+            <End Role="BILETE" EntitySet="BILETE" />
+          </AssociationSet>
+          <AssociationSet Name="ZBORURI_FK0" Association="Self.ZBORURI_FK0">
+            <End Role="AEROPORTURI" EntitySet="AEROPORTURI" />
+            <End Role="ZBORURI" EntitySet="ZBORURI" />
+          </AssociationSet>
+          <AssociationSet Name="ZBORURI_FK1" Association="Self.ZBORURI_FK1">
+            <End Role="COMPANII_AERIENE" EntitySet="COMPANII_AERIENE" />
+            <End Role="ZBORURI" EntitySet="ZBORURI" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IntVirtualModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AEROPORTURI">
+          <Key>
+            <PropertyRef Name="ID_AEROPORTURI" />
+          </Key>
+          <Property Name="ID_AEROPORTURI" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NUME_AEROPORT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COD_AEROPORT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ORAS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TARA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NR_PISTE" Type="Byte" Nullable="false" />
+          <Property Name="NR_PORTI" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="ZBORURIs" Relationship="Self.ZBORURI_FK0" FromRole="AEROPORTURI" ToRole="ZBORURI" />
+        </EntityType>
+        <EntityType Name="BILETE">
+          <Key>
+            <PropertyRef Name="ID_BILETE" />
+          </Key>
+          <Property Name="ID_BILETE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_PASAGERI" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_ZBORURI" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DATA_REZERVARE" Type="DateTime" Nullable="false" />
+          <Property Name="CLASA" Type="Boolean" Nullable="false" />
+          <Property Name="LOC" Type="Byte" Nullable="false" />
+          <Property Name="PRET" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="PASAGERI" Relationship="Self.BILETE_FK0" FromRole="BILETE" ToRole="PASAGERI" />
+          <NavigationProperty Name="ZBORURI" Relationship="Self.BILETE_FK1" FromRole="BILETE" ToRole="ZBORURI" />
+        </EntityType>
+        <EntityType Name="COMPANII_AERIENE">
+          <Key>
+            <PropertyRef Name="ID_COMPANII" />
+          </Key>
+          <Property Name="ID_COMPANII" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NUME_COMPANIE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COD_COMPANIE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TARA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AN_INFIINTARE" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="ZBORURIs" Relationship="Self.ZBORURI_FK1" FromRole="COMPANII_AERIENE" ToRole="ZBORURI" />
+        </EntityType>
+        <EntityType Name="PASAGERI">
+          <Key>
+            <PropertyRef Name="ID_PASAGERI" />
+          </Key>
+          <Property Name="ID_PASAGERI" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NUME_PASAGER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRENUME_PASAGER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DATA_NASTERII" Type="DateTime" Nullable="false" />
+          <Property Name="NATIONALITATE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NR_PASAPORT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GEN" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NR_TEL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BILETEs" Relationship="Self.BILETE_FK0" FromRole="PASAGERI" ToRole="BILETE" />
+        </EntityType>
+        <EntityType Name="ZBORURI">
+          <Key>
+            <PropertyRef Name="ID_ZBORURI" />
+          </Key>
+          <Property Name="ID_ZBORURI" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_COMPANII" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AEROPORT_PLECARE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AEROPORT_SOSIRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ORA_PLECARE" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="ORA_SOSIRE" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="DURATA_ZBOR" Type="Int16" Nullable="false" />
+          <Property Name="TIP_AVION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_AEROPORTURI" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="AEROPORTURI" Relationship="Self.ZBORURI_FK0" FromRole="ZBORURI" ToRole="AEROPORTURI" />
+          <NavigationProperty Name="BILETEs" Relationship="Self.BILETE_FK1" FromRole="ZBORURI" ToRole="BILETE" />
+          <NavigationProperty Name="COMPANII_AERIENE" Relationship="Self.ZBORURI_FK1" FromRole="ZBORURI" ToRole="COMPANII_AERIENE" />
+        </EntityType>
+        <Association Name="ZBORURI_FK0">
+          <End Role="AEROPORTURI" Type="Self.AEROPORTURI" Multiplicity="1" />
+          <End Role="ZBORURI" Type="Self.ZBORURI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AEROPORTURI">
+              <PropertyRef Name="ID_AEROPORTURI" />
+            </Principal>
+            <Dependent Role="ZBORURI">
+              <PropertyRef Name="ID_AEROPORTURI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BILETE_FK0">
+          <End Role="PASAGERI" Type="Self.PASAGERI" Multiplicity="1" />
+          <End Role="BILETE" Type="Self.BILETE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PASAGERI">
+              <PropertyRef Name="ID_PASAGERI" />
+            </Principal>
+            <Dependent Role="BILETE">
+              <PropertyRef Name="ID_PASAGERI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BILETE_FK1">
+          <End Role="ZBORURI" Type="Self.ZBORURI" Multiplicity="1" />
+          <End Role="BILETE" Type="Self.BILETE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZBORURI">
+              <PropertyRef Name="ID_ZBORURI" />
+            </Principal>
+            <Dependent Role="BILETE">
+              <PropertyRef Name="ID_ZBORURI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ZBORURI_FK1">
+          <End Role="COMPANII_AERIENE" Type="Self.COMPANII_AERIENE" Multiplicity="1" />
+          <End Role="ZBORURI" Type="Self.ZBORURI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPANII_AERIENE">
+              <PropertyRef Name="ID_COMPANII" />
+            </Principal>
+            <Dependent Role="ZBORURI">
+              <PropertyRef Name="ID_COMPANII" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IntVirtualEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AEROPORTURIs" EntityType="Self.AEROPORTURI" />
+          <EntitySet Name="BILETEs" EntityType="Self.BILETE" />
+          <EntitySet Name="COMPANII_AERIENE" EntityType="Self.COMPANII_AERIENE" />
+          <EntitySet Name="PASAGERIs" EntityType="Self.PASAGERI" />
+          <EntitySet Name="ZBORURIs" EntityType="Self.ZBORURI" />
+          <AssociationSet Name="ZBORURI_FK0" Association="Self.ZBORURI_FK0">
+            <End Role="AEROPORTURI" EntitySet="AEROPORTURIs" />
+            <End Role="ZBORURI" EntitySet="ZBORURIs" />
+          </AssociationSet>
+          <AssociationSet Name="BILETE_FK0" Association="Self.BILETE_FK0">
+            <End Role="PASAGERI" EntitySet="PASAGERIs" />
+            <End Role="BILETE" EntitySet="BILETEs" />
+          </AssociationSet>
+          <AssociationSet Name="BILETE_FK1" Association="Self.BILETE_FK1">
+            <End Role="ZBORURI" EntitySet="ZBORURIs" />
+            <End Role="BILETE" EntitySet="BILETEs" />
+          </AssociationSet>
+          <AssociationSet Name="ZBORURI_FK1" Association="Self.ZBORURI_FK1">
+            <End Role="COMPANII_AERIENE" EntitySet="COMPANII_AERIENE" />
+            <End Role="ZBORURI" EntitySet="ZBORURIs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IntVirtualModelStoreContainer" CdmEntityContainer="IntVirtualEntities">
+          <EntitySetMapping Name="AEROPORTURIs">
+            <EntityTypeMapping TypeName="IntVirtualModel.AEROPORTURI">
+              <MappingFragment StoreEntitySet="AEROPORTURI">
+                <ScalarProperty Name="ID_AEROPORTURI" ColumnName="ID_AEROPORTURI" />
+                <ScalarProperty Name="NUME_AEROPORT" ColumnName="NUME_AEROPORT" />
+                <ScalarProperty Name="COD_AEROPORT" ColumnName="COD_AEROPORT" />
+                <ScalarProperty Name="ORAS" ColumnName="ORAS" />
+                <ScalarProperty Name="TARA" ColumnName="TARA" />
+                <ScalarProperty Name="NR_PISTE" ColumnName="NR_PISTE" />
+                <ScalarProperty Name="NR_PORTI" ColumnName="NR_PORTI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BILETEs">
+            <EntityTypeMapping TypeName="IntVirtualModel.BILETE">
+              <MappingFragment StoreEntitySet="BILETE">
+                <ScalarProperty Name="ID_BILETE" ColumnName="ID_BILETE" />
+                <ScalarProperty Name="ID_PASAGERI" ColumnName="ID_PASAGERI" />
+                <ScalarProperty Name="ID_ZBORURI" ColumnName="ID_ZBORURI" />
+                <ScalarProperty Name="DATA_REZERVARE" ColumnName="DATA_REZERVARE" />
+                <ScalarProperty Name="CLASA" ColumnName="CLASA" />
+                <ScalarProperty Name="LOC" ColumnName="LOC" />
+                <ScalarProperty Name="PRET" ColumnName="PRET" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMPANII_AERIENE">
+            <EntityTypeMapping TypeName="IntVirtualModel.COMPANII_AERIENE">
+              <MappingFragment StoreEntitySet="COMPANII_AERIENE">
+                <ScalarProperty Name="ID_COMPANII" ColumnName="ID_COMPANII" />
+                <ScalarProperty Name="NUME_COMPANIE" ColumnName="NUME_COMPANIE" />
+                <ScalarProperty Name="COD_COMPANIE" ColumnName="COD_COMPANIE" />
+                <ScalarProperty Name="TARA" ColumnName="TARA" />
+                <ScalarProperty Name="AN_INFIINTARE" ColumnName="AN_INFIINTARE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PASAGERIs">
+            <EntityTypeMapping TypeName="IntVirtualModel.PASAGERI">
+              <MappingFragment StoreEntitySet="PASAGERI">
+                <ScalarProperty Name="ID_PASAGERI" ColumnName="ID_PASAGERI" />
+                <ScalarProperty Name="NUME_PASAGER" ColumnName="NUME_PASAGER" />
+                <ScalarProperty Name="PRENUME_PASAGER" ColumnName="PRENUME_PASAGER" />
+                <ScalarProperty Name="DATA_NASTERII" ColumnName="DATA_NASTERII" />
+                <ScalarProperty Name="NATIONALITATE" ColumnName="NATIONALITATE" />
+                <ScalarProperty Name="NR_PASAPORT" ColumnName="NR_PASAPORT" />
+                <ScalarProperty Name="GEN" ColumnName="GEN" />
+                <ScalarProperty Name="NR_TEL" ColumnName="NR_TEL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZBORURIs">
+            <EntityTypeMapping TypeName="IntVirtualModel.ZBORURI">
+              <MappingFragment StoreEntitySet="ZBORURI">
+                <ScalarProperty Name="ID_ZBORURI" ColumnName="ID_ZBORURI" />
+                <ScalarProperty Name="ID_COMPANII" ColumnName="ID_COMPANII" />
+                <ScalarProperty Name="AEROPORT_PLECARE" ColumnName="AEROPORT_PLECARE" />
+                <ScalarProperty Name="AEROPORT_SOSIRE" ColumnName="AEROPORT_SOSIRE" />
+                <ScalarProperty Name="ORA_PLECARE" ColumnName="ORA_PLECARE" />
+                <ScalarProperty Name="ORA_SOSIRE" ColumnName="ORA_SOSIRE" />
+                <ScalarProperty Name="DURATA_ZBOR" ColumnName="DURATA_ZBOR" />
+                <ScalarProperty Name="TIP_AVION" ColumnName="TIP_AVION" />
+                <ScalarProperty Name="ID_AEROPORTURI" ColumnName="ID_AEROPORTURI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

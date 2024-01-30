@@ -1,0 +1,89 @@
+﻿@model flight_management.Models.AEROPORTURI
+
+@{
+    ViewBag.Title = "Adăugare - Aeroporturi";
+}
+
+<div class="text-center">
+    <h2 class="pt-4 pb-4"> Adăugare Aeroport </h2>
+    <hr />
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal centered-form-column">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            
+            <div class="form-group pt-2 text-center centered-form-column">
+                @Html.LabelFor(model => model.ID_AEROPORTURI, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 text-center centered-form-column">
+                    @Html.EditorFor(model => model.ID_AEROPORTURI, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ID_AEROPORTURI, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group pt-2 text-center centered-form-column">
+                @Html.LabelFor(model => model.NUME_AEROPORT, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 text-center centered-form-column">
+                    @Html.EditorFor(model => model.NUME_AEROPORT, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NUME_AEROPORT, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group pt-2 text-center centered-form-column">
+                @Html.LabelFor(model => model.COD_AEROPORT, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 text-center centered-form-column">
+                    @Html.EditorFor(model => model.COD_AEROPORT, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.COD_AEROPORT, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group pt-2 text-center centered-form-column">
+                @Html.LabelFor(model => model.ORAS, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 text-center centered-form-column">
+                    @Html.EditorFor(model => model.ORAS, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ORAS, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group pt-2 text-center centered-form-column">
+                @Html.LabelFor(model => model.TARA, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 text-center centered-form-column">
+                    @Html.EditorFor(model => model.TARA, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TARA, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group pt-2 text-center centered-form-column">
+                @Html.LabelFor(model => model.NR_PISTE, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 text-center centered-form-column">
+                    @Html.EditorFor(model => model.NR_PISTE, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NR_PISTE, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group pt-2 text-center centered-form-column">
+                @Html.LabelFor(model => model.NR_PORTI, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 text-center centered-form-column">
+                    @Html.EditorFor(model => model.NR_PORTI, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NR_PORTI, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group pt-4">
+                <div class="text-center">
+                    <input type="submit" value="Adaugă" class="btn btn-success d-inline-block" />
+                    @Html.ActionLink("Înapoi", "Index", null, new { @class = "btn btn-primary d-inline-block" })
+                </div>
+            </div>
+        </div>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</div>
+
+

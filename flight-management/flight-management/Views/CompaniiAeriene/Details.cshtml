@@ -1,0 +1,51 @@
+﻿@model flight_management.Models.COMPANII_AERIENE
+
+@{
+    ViewBag.Title = "Detalii - Companii Aeriene";
+}
+
+<div class="text-center">
+    <h2 class="pt-4 pb-4"> Detalii despre Compania Aeriană: @Model.NUME_COMPANIE </h2>
+    <hr />
+
+    <div>
+
+        <dl class="dl-horizontal centered-form-column">
+
+            <!-- Camp - NUME_COMPANIE -->
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.NUME_COMPANIE) </dt>
+                <dd> @Html.DisplayFor(model => model.NUME_COMPANIE) </dd>
+            </div>
+
+            <!-- Camp - COD_COMPANIE -->
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.COD_COMPANIE) </dt>
+                <dd> @Html.DisplayFor(model => model.COD_COMPANIE) </dd>
+            </div>
+
+            <!-- Camp - TARA -->
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.TARA) </dt>
+                <dd> @Html.DisplayFor(model => model.TARA) </dd>
+            </div>
+
+            <!-- Camp - AN_INFIINTARE -->
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.AN_INFIINTARE) </dt>
+                <dd> @Html.DisplayFor(model => model.AN_INFIINTARE) </dd>
+            </div>
+
+        </dl>
+
+        <div class="form-group pt-4 pb-4">
+            <div class="text-center">
+                @Html.ActionLink("Modifică", "Edit", new { id = Model.ID_COMPANII }, new { @class = "btn btn-success d-inline-block" })
+                @Html.ActionLink("Înapoi", "Index", null, new { @class = "btn btn-primary d-inline-block" })
+            </div>
+        </div>
+
+    </div>
+
+</div>
+

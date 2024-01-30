@@ -1,0 +1,58 @@
+﻿@model flight_management.Models.AEROPORTURI
+
+@{
+    ViewBag.Title = "Detalii - Aeroporturi";
+}
+
+<div class="text-center">
+    <h2 class="pt-4 pb-4"> Detalii despre Aeroportul: @Model.NUME_AEROPORT </h2>
+    <hr />
+
+    <div>
+
+        <dl class="dl-horizontal centered-form-column">
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.NUME_AEROPORT) </dt>
+                <dd> @Html.DisplayFor(model => model.NUME_AEROPORT) </dd>
+            </div>
+            
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.COD_AEROPORT) </dt>
+                <dd> @Html.DisplayFor(model => model.COD_AEROPORT) </dd>
+            </div>
+            
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.ORAS) </dt>
+                <dd> @Html.DisplayFor(model => model.ORAS) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.TARA) </dt>
+                <dd> @Html.DisplayFor(model => model.TARA) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.NR_PISTE) </dt>
+                <dd> @Html.DisplayFor(model => model.NR_PISTE) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.NR_PORTI) </dt>
+                <dd> @Html.DisplayFor(model => model.NR_PORTI) </dd>
+            </div>
+
+        </dl>
+
+        <div class="form-group pt-4 pb-4">
+            <div class="text-center">
+                @Html.ActionLink("Modifică", "Edit", new { id = Model.ID_AEROPORTURI }, new { @class = "btn btn-success d-inline-block" })
+                @Html.ActionLink("Înapoi", "Index", null, new { @class = "btn btn-primary d-inline-block" })
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+

@@ -1,0 +1,127 @@
+﻿@model flight_management.Models.BILETE
+
+@{
+    ViewBag.Title = "Adăugare - Bilete";
+}
+
+<h2 class="text-center pt-4 pb-4"> Adăugare Bilet </h2>
+<hr />
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    
+                    <div class="form-group pt-2 text-center centered-form-column">
+                        @Html.LabelFor(model => model.ID_BILETE, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 text-center centered-form-column">
+                            @Html.EditorFor(model => model.ID_BILETE, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ID_BILETE, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group pt-2 text-center centered-form-column">
+                        @Html.LabelFor(model => model.ID_PASAGERI, "ID_PASAGERI", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 text-center centered-form-column">
+                            @Html.DropDownList("ID_PASAGERI", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ID_PASAGERI, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group pt-2 text-center centered-form-column">
+                        @Html.LabelFor(model => model.ID_ZBORURI, "ID_ZBORURI", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 text-center centered-form-column">
+                            @Html.DropDownList("ID_ZBORURI", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ID_ZBORURI, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group pt-2 text-center centered-form-column">
+                        @Html.LabelFor(model => model.DATA_REZERVARE, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 text-center centered-form-column">
+                            @Html.TextBoxFor(model => model.DATA_REZERVARE, "{0:yyyy-MM-ddTHH:mm}", new { @class = "form-control", type = "datetime-local" })
+                            @Html.ValidationMessageFor(model => model.DATA_REZERVARE, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group pt-2 text-center centered-form-column">
+                        @Html.LabelFor(model => model.CLASA, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 text-center centered-form-column">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.CLASA)
+                                @Html.ValidationMessageFor(model => model.CLASA, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group pt-2 text-center centered-form-column">
+                        @Html.LabelFor(model => model.LOC, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 text-center centered-form-column">
+                            @Html.EditorFor(model => model.LOC, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LOC, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group pt-2 text-center centered-form-column">
+                        @Html.LabelFor(model => model.PRET, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 text-center centered-form-column">
+                            @Html.EditorFor(model => model.PRET, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PRET, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group pt-4">
+                        <div class="text-center">
+                            <input type="submit" value="Adaugă" class="btn btn-success d-inline-block" />
+                            @Html.ActionLink("Înapoi", "Index", null, new { @class = "btn btn-primary d-inline-block" })
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-8">
+                <table class="pt-4 table table-secondary">
+                    <tr class="table-success">
+                        <th> ID_ZBOR </th>
+                        <th> AEROPORT_PLECARE </th>
+                        <th> AEROPORT_SOSIRE </th>
+                        <th> ORA_PLECARE </th>
+                        <th> ORA_SOSIRE </th>
+                        <th> DURATA_ZBOR  </th>
+                        <th> TIP_AVION </th>
+                        <th> NUME_COMPANIE </th>
+                    </tr>
+
+                    @foreach (var item in (IEnumerable<flight_management.Models.ZBORURI>)ViewBag.ZboruriList)
+                    {
+                        <tr>
+                            <td> @Html.DisplayFor(modelItem => item.ID_ZBORURI) </td>
+                            <td> @Html.DisplayFor(modelItem => item.AEROPORT_PLECARE) </td>
+                            <td> @Html.DisplayFor(modelItem => item.AEROPORT_SOSIRE) </td>
+                            <td> @Html.DisplayFor(modelItem => item.ORA_PLECARE) </td>
+                            <td> @Html.DisplayFor(modelItem => item.ORA_SOSIRE) </td>
+                            <td> @Html.DisplayFor(modelItem => item.DURATA_ZBOR) </td>
+                            <td> @Html.DisplayFor(modelItem => item.TIP_AVION) </td>
+                            <td> @Html.DisplayFor(modelItem => item.COMPANII_AERIENE.NUME_COMPANIE) </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+
+    
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

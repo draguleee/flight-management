@@ -1,0 +1,61 @@
+﻿@model flight_management.Models.PASAGERI
+
+@{
+    ViewBag.Title = "Detalii - Pasageri";
+}
+
+<div class="text-center">
+    <h2 class="pt-4 pb-4"> Detalii despre Pasagerul: @Model.NUME_PASAGER, @Model.PRENUME_PASAGER </h2>
+    <hr />
+
+    <div>
+
+        <dl class="dl-horizontal centered-form-column">
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.NUME_PASAGER) </dt>
+                <dd> @Html.DisplayFor(model => model.NUME_PASAGER) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.PRENUME_PASAGER) </dt>
+                <dd> @Html.DisplayFor(model => model.PRENUME_PASAGER) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.DATA_NASTERII) </dt>
+                <dd> @Html.DisplayFor(model => model.DATA_NASTERII) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.NATIONALITATE) </dt>
+                <dd> @Html.DisplayFor(model => model.NATIONALITATE) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.NR_PASAPORT) </dt>
+                <dd> @Html.DisplayFor(model => model.NR_PASAPORT) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.GEN) </dt>
+                <dd> @Html.DisplayFor(model => model.GEN) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.NR_TEL) </dt>
+                <dd> @Html.DisplayFor(model => model.NR_TEL) </dd>
+            </div>
+
+        </dl>
+
+    </div>
+    <div class="form-group pt-4 pb-4">
+        <div class="text-center">
+            @Html.ActionLink("Modifică", "Edit", new { id = Model.ID_PASAGERI }, new { @class = "btn btn-success d-inline-block" })
+            @Html.ActionLink("Înapoi", "Index", null, new { @class = "btn btn-primary d-inline-block" })
+        </div>
+    </div>
+
+</div>
+

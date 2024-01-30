@@ -1,0 +1,58 @@
+﻿@model IEnumerable<flight_management.Models.ZBORURI>
+
+@{
+    ViewBag.Title = "Index - Zboruri";
+}
+
+<div class="text-center">
+    <h2 class="pt-4 pb-4">@ViewBag.Title</h2>
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            Căutare după tipul avionului: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" class="btn btn-success" />
+        </p>
+    }
+
+    <table class="pt-4 table table-secondary">
+        <tr class="table-success">
+            <th> @Html.DisplayNameFor(model => model.AEROPORT_PLECARE) </th>
+            <th> @Html.DisplayNameFor(model => model.AEROPORT_SOSIRE) </th>
+            <th> @Html.DisplayNameFor(model => model.ORA_PLECARE) </th>
+            <th> @Html.DisplayNameFor(model => model.ORA_SOSIRE) </th>
+            <th> @Html.ActionLink("DURATA_ZBOR", "Index", new { sortOrder = ViewBag.DurataSortParm })  </th>
+            <th> @Html.DisplayNameFor(model => model.TIP_AVION) </th>
+            <th> @Html.DisplayNameFor(model => model.AEROPORTURI.NUME_AEROPORT) </th>
+            <th> @Html.DisplayNameFor(model => model.COMPANII_AERIENE.NUME_COMPANIE) </th>
+            <th> OPERAȚIUNI </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @Html.DisplayFor(modelItem => item.AEROPORT_PLECARE) </td>
+                <td> @Html.DisplayFor(modelItem => item.AEROPORT_SOSIRE) </td>
+                <td> @Html.DisplayFor(modelItem => item.ORA_PLECARE) </td>
+                <td> @Html.DisplayFor(modelItem => item.ORA_SOSIRE) </td>
+                <td> @Html.DisplayFor(modelItem => item.DURATA_ZBOR) </td>
+                <td> @Html.DisplayFor(modelItem => item.TIP_AVION) </td>
+                <td> @Html.DisplayFor(modelItem => item.AEROPORTURI.NUME_AEROPORT) </td>
+                <td> @Html.DisplayFor(modelItem => item.COMPANII_AERIENE.NUME_COMPANIE) </td>
+                <td>
+                    @Html.ActionLink("Modifică", "Edit", new { id = item.ID_ZBORURI }, new { @class = "btn btn-sm btn-primary" }) 
+                    @Html.ActionLink("Detalii", "Details", new { id = item.ID_ZBORURI }, new { @class = "btn btn-sm btn-info" }) 
+                    @Html.ActionLink("Șterge", "Delete", new { id = item.ID_ZBORURI }, new { @class = "btn btn-sm btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <p class="pt-3">
+        @Html.ActionLink("Adaugă Zbor", "Create", null, new { @class = "btn btn-success" })
+    </p>
+</div>
+
+
+
+

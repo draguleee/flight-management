@@ -1,0 +1,44 @@
+﻿@model IEnumerable<flight_management.Models.BILETE>
+
+@{
+    ViewBag.Title = "Index - Bilete";
+}
+
+<div class="text-center">
+    <h2 class="pt-4 pb-4">@ViewBag.Title</h2>
+
+    <table class="pt-4 table table-secondary">
+        <tr class="table-success">
+            <th> @Html.ActionLink("DATA_REZERVARE", "Index", new { sortOrder = ViewBag.RezervareSortParm })  </th>
+            <th> @Html.DisplayNameFor(model => model.CLASA) </th>
+            <th> @Html.DisplayNameFor(model => model.LOC) </th>
+            <th> @Html.DisplayNameFor(model => model.PRET) </th>
+            <th> @Html.DisplayNameFor(model => model.PASAGERI.NUME_PASAGER) </th>
+            <th> @Html.DisplayNameFor(model => model.ZBORURI.AEROPORT_PLECARE) </th>
+            <th> OPERAȚIUNI </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @Html.DisplayFor(modelItem => item.DATA_REZERVARE) </td>
+                <td> @Html.DisplayFor(modelItem => item.CLASA) </td>
+                <td> @Html.DisplayFor(modelItem => item.LOC) </td>
+                <td> @Html.DisplayFor(modelItem => item.PRET) </td>
+                <td> @Html.DisplayFor(modelItem => item.PASAGERI.NUME_PASAGER) </td>
+                <td> @Html.DisplayFor(modelItem => item.ZBORURI.AEROPORT_PLECARE) </td>
+                <td>
+                    @Html.ActionLink("Modifică", "Edit", new { id = item.ID_ZBORURI }, new { @class = "btn btn-sm btn-primary" })
+                    @Html.ActionLink("Detalii", "Details", new { id = item.ID_ZBORURI }, new { @class = "btn btn-sm btn-info" })
+                    @Html.ActionLink("Șterge", "Delete", new { id = item.ID_ZBORURI }, new { @class = "btn btn-sm btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <p class="pt-3">
+        @Html.ActionLink("Adaugă Bilet", "Create", null, new { @class = "btn btn-success" })
+    </p>
+</div>
+
+

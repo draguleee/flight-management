@@ -1,0 +1,54 @@
+﻿@model IEnumerable<flight_management.Models.PASAGERI>
+
+@{
+    ViewBag.Title = "Index - Pasageri";
+}
+
+<div class="text-center">
+    <h2 class="pt-4 pb-4">@ViewBag.Title</h2>
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            Căutare după naționalitate: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" class="btn btn-success" />
+        </p>
+    }
+
+    <table class="pt-4 table table-secondary">
+        <tr class="table-success">
+            <th> @Html.DisplayNameFor(model => model.NUME_PASAGER) </th>
+            <th> @Html.DisplayNameFor(model => model.PRENUME_PASAGER) </th>
+            <th> @Html.ActionLink("DATA_NASTERII", "Index", new { sortOrder = ViewBag.DataSortParm }) </th>
+            <th> @Html.DisplayNameFor(model => model.NATIONALITATE) </th>
+            <th> @Html.DisplayNameFor(model => model.NR_PASAPORT) </th>
+            <th> @Html.DisplayNameFor(model => model.GEN) </th>
+            <th> @Html.DisplayNameFor(model => model.NR_TEL) </th>
+            <th> OPERAȚIUNI </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @Html.DisplayFor(modelItem => item.NUME_PASAGER) </td>
+                <td> @Html.DisplayFor(modelItem => item.PRENUME_PASAGER) </td>
+                <td> @Html.DisplayFor(modelItem => item.DATA_NASTERII) </td>
+                <td> @Html.DisplayFor(modelItem => item.NATIONALITATE) </td>
+                <td> @Html.DisplayFor(modelItem => item.NR_PASAPORT) </td>
+                <td> @Html.DisplayFor(modelItem => item.GEN) </td>
+                <td> @Html.DisplayFor(modelItem => item.NR_TEL) </td>
+                <td>
+                    @Html.ActionLink("Modifică", "Edit", new { id = item.ID_PASAGERI }, new { @class = "btn btn-sm btn-primary" }) |
+                    @Html.ActionLink("Detalii", "Details", new { id = item.ID_PASAGERI }, new { @class = "btn btn-sm btn-info" }) |
+                    @Html.ActionLink("Șterge", "Delete", new { id = item.ID_PASAGERI }, new { @class = "btn btn-sm btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <p class="pt-3">
+        @Html.ActionLink("Adaugă Pasager", "Create", null, new { @class = "btn btn-success" })
+    </p>
+</div>
+
+

@@ -1,0 +1,165 @@
+﻿@model flight_management.Models.ZBORURI
+
+@{
+    ViewBag.Title = "Adăugare - Zboruri";
+}
+
+<h2 class="text-center pb-4 pt-4"> Adăugare Zbor </h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <!-- Camp pentru adaugarea ID-ului zborului-->
+                    <div class="form-group pt-2 text-center centered-form-column">
+                        @Html.LabelFor(model => model.ID_ZBORURI, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 text-center centered-form-column">
+                            @Html.EditorFor(model => model.ID_ZBORURI, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ID_ZBORURI, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <!-- Camp pentru selectarea ID-ului companiei -->
+                    <div class="form-group pt-2 text-center centered-form-column">
+                        @Html.LabelFor(model => model.ID_COMPANII, "ID_COMPANII", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 text-center centered-form-column">
+                            @Html.DropDownList("ID_COMPANII", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ID_COMPANII, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <!-- Camp pentru adaugarea aeroportului de plecare -->
+                    <div class="form-group pt-2 text-center centered-form-column">
+                        @Html.LabelFor(model => model.AEROPORT_PLECARE, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 text-center centered-form-column">
+                            @Html.EditorFor(model => model.AEROPORT_PLECARE, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AEROPORT_PLECARE, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <!-- Camp pentru adaugarea aeroportului de sosire -->
+                    <div class="form-group pt-2 text-center centered-form-column">
+                        @Html.LabelFor(model => model.AEROPORT_SOSIRE, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 text-center centered-form-column">
+                            @Html.EditorFor(model => model.AEROPORT_SOSIRE, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AEROPORT_SOSIRE, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <!-- Camp pentru selectarea datei si orei de plecare -->
+                    <div class="form-group pt-2 text-center centered-form-column">
+                        @Html.LabelFor(model => model.ORA_PLECARE, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 text-center centered-form-column">
+                            @Html.TextBoxFor(model => model.ORA_PLECARE, "{0:yyyy-MM-ddTHH:mm}", new { @class = "form-control", type = "datetime-local" })
+                            @Html.ValidationMessageFor(model => model.ORA_PLECARE, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <!-- Camp pentru selectarea datei si orei de sosire -->
+                    <div class="form-group pt-2 text-center centered-form-column">
+                        @Html.LabelFor(model => model.ORA_SOSIRE, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 text-center centered-form-column">
+                            @Html.TextBoxFor(model => model.ORA_SOSIRE, "{0:yyyy-MM-ddTHH:mm}", new { @class = "form-control", type = "datetime-local" })
+                            @Html.ValidationMessageFor(model => model.ORA_SOSIRE, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <!-- Camp pentru afisarea duratei zborului (generat automat pe baza orei de plecare si sosire) -->
+                    <div class="form-group pt-2 text-center centered-form-column">
+                        @Html.LabelFor(model => model.DURATA_ZBOR, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 text-center centered-form-column">
+                            @Html.EditorFor(model => model.DURATA_ZBOR, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DURATA_ZBOR, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <!-- Camp pentru selectarea tipului de avion -->
+                    <div class="form-group pt-2 text-center centered-form-column">
+                        @Html.LabelFor(model => model.TIP_AVION, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 text-center centered-form-column">
+                            @Html.EditorFor(model => model.TIP_AVION, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TIP_AVION, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <!-- Camp pentru selectarea ID-ului aeroportului -->
+                    <div class="form-group pt-2 text-center centered-form-column">
+                        @Html.LabelFor(model => model.ID_AEROPORTURI, "ID_AEROPORTURI", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 text-center centered-form-column">
+                            @Html.DropDownList("ID_AEROPORTURI", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ID_AEROPORTURI, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <!-- Butoanele de adaugare si revenire la Zboruri/Index -->
+                    <div class="form-group pt-4">
+                        <div class="text-center">
+                            <input type="submit" value="Adaugă" class="btn btn-success d-inline-block" />
+                            @Html.ActionLink("Înapoi", "Index", null, new { @class = "btn btn-primary d-inline-block" })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-8">
+                <table class="pt-4 table table-secondary">
+                    <tr class="table-success">
+                        <th> NUME_AEROPORT </th>
+                        <th> COD_AEROPORT </th>
+                        <th> ORAS </th>
+                        <th> TARA </th>
+                        <th> NR_PISTE </th>
+                        <th> NR_PORTI </th>
+                    </tr>
+
+                    @foreach (var item in (IEnumerable<flight_management.Models.AEROPORTURI>)ViewBag.AeroporturiList)
+                    {
+                        <tr>
+                            <td> @Html.DisplayFor(modelItem => item.NUME_AEROPORT) </td>
+                            <td> @Html.DisplayFor(modelItem => item.COD_AEROPORT) </td>
+                            <td> @Html.DisplayFor(modelItem => item.ORAS) </td>
+                            <td> @Html.DisplayFor(modelItem => item.TARA) </td>
+                            <td> @Html.DisplayFor(modelItem => item.NR_PISTE) </td>
+                            <td> @Html.DisplayFor(modelItem => item.NR_PORTI) </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#ORA_PLECARE, #ORA_SOSIRE').change(function () {
+                var start = $('#ORA_PLECARE').val();
+                var end = $('#ORA_SOSIRE').val();
+                if (start && end) {
+                    var startDate = new Date(start);
+                    var endDate = new Date(end);
+                    var duration = (endDate - startDate) / 1000 / 60; 
+                    if (duration < 0) {
+                        alert('Ora de sosire nu poate fi inainte de ora de plecare.');
+                        $('#DURATA_ZBOR').val('');
+                        return false;
+                    } else {
+                        $('#DURATA_ZBOR').val(duration);
+                    }
+                }
+            });
+        });
+    </script>
+}
+

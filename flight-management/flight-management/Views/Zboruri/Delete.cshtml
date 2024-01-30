@@ -1,0 +1,71 @@
+﻿@model flight_management.Models.ZBORURI
+
+@{
+    ViewBag.Title = "Ștergere - Zboruri";
+}
+
+<div class="text-center">
+    <h2 class="pt-4 pb-4"> Confirmare ștergere pentru Zborul: ID @Model.ID_ZBORURI</h2>
+    <hr />
+
+    <div>
+
+        <dl class="dl-horizontal centered-form-column">
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.AEROPORT_PLECARE) </dt>
+                <dd> @Html.DisplayFor(model => model.AEROPORT_PLECARE) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.AEROPORT_SOSIRE) </dt>
+                <dd> @Html.DisplayFor(model => model.AEROPORT_SOSIRE) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.ORA_PLECARE) </dt>
+                <dd> @Html.DisplayFor(model => model.ORA_PLECARE) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.ORA_SOSIRE) </dt>
+                <dd> @Html.DisplayFor(model => model.ORA_SOSIRE) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.DURATA_ZBOR) </dt>
+                <dd> @Html.DisplayFor(model => model.DURATA_ZBOR) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.TIP_AVION) </dt>
+                <dd> @Html.DisplayFor(model => model.TIP_AVION) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.AEROPORTURI.NUME_AEROPORT) </dt>
+                <dd> @Html.DisplayFor(model => model.AEROPORTURI.NUME_AEROPORT) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.COMPANII_AERIENE.NUME_COMPANIE) </dt>
+                <dd> @Html.DisplayFor(model => model.COMPANII_AERIENE.NUME_COMPANIE) </dd>
+            </div>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group pt-4 pb-4">
+                <div class="text-center">
+                    <input type="submit" value="Șterge" class="btn btn-danger" />
+                    @Html.ActionLink("Înapoi", "Index", null, new { @class = "btn btn-primary d-inline-block" })
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

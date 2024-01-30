@@ -1,0 +1,61 @@
+﻿@model flight_management.Models.BILETE
+
+@{
+    ViewBag.Title = "Ștergere - Bilete";
+}
+
+<div class="text-center">
+    <h2 class="pt-4 pb-4"> Confirmare ștergere pentru Biletul: ID @Model.ID_BILETE </h2>
+    <hr />
+
+    <div>
+
+        <dl class="dl-horizontal centered-form-column">
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.DATA_REZERVARE) </dt>
+                <dd> @Html.DisplayFor(model => model.DATA_REZERVARE) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.CLASA) </dt>
+                <dd> @Html.DisplayFor(model => model.CLASA) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.LOC) </dt>
+                <dd> @Html.DisplayFor(model => model.LOC) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.PRET) </dt>
+                <dd> @Html.DisplayFor(model => model.PRET) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.PASAGERI.NUME_PASAGER) </dt>
+                <dd> @Html.DisplayFor(model => model.PASAGERI.NUME_PASAGER) </dd>
+            </div>
+
+            <div class="pt-4 centered-form-column">
+                <dt> @Html.DisplayNameFor(model => model.ZBORURI.AEROPORT_PLECARE) </dt>
+                <dd> @Html.DisplayFor(model => model.ZBORURI.AEROPORT_PLECARE) </dd>
+            </div>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group pt-4 pb-4">
+                <div class="text-center">
+                    <input type="submit" value="Șterge" class="btn btn-danger" />
+                    @Html.ActionLink("Înapoi", "Index", null, new { @class = "btn btn-primary d-inline-block" })
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+
